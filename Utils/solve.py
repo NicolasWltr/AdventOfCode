@@ -1,7 +1,7 @@
 import importlib
 
 
-def getSolveFor(year: int, day: int):
+def get_solve_for(year: int, day: int):
     def not_implemented(*args, **kwargs):
         raise NotImplementedError(f"Solver for Year {year}, Day {day} is not implemented.")
 
