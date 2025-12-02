@@ -35,7 +35,7 @@ def solve(data, first, second):
 
 
 if __name__ == "__main__":
-    year, day = read_parameter()
+    year, day, autosubmit = read_parameter()
     create_solve_file(year, day)
     path = get_input_for_year_day(year, day, timeout=100)
 
@@ -56,7 +56,7 @@ if __name__ == "__main__":
                 border_style="green",
             )
         )
-        if Prompt.ask(Text("Submit solution for Part 1? (y/n)", style="bold yellow")).lower() == "y":
+        if autosubmit or Prompt.ask(Text("Submit solution for Part 1? (y/n)", style="bold yellow")).lower() == "y":
             article, success = submit_answer(year, day, 1, str(result_first))
             console.print(
                 Panel.fit(
@@ -75,7 +75,7 @@ if __name__ == "__main__":
                 border_style="green",
             )
         )
-        if Prompt.ask(Text("Submit solution for Part 2? (y/n)", style="bold yellow")).lower() == "y":
+        if autosubmit or Prompt.ask(Text("Submit solution for Part 2? (y/n)", style="bold yellow")).lower() == "y":
             article, success = submit_answer(year, day, 2, str(result_second))
             console.print(
                 Panel.fit(
