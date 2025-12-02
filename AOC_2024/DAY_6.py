@@ -17,7 +17,6 @@ def find_pos(grid):
 
 def position_in_grid(position, grid):
     if not position:
-        print("No position!")
         return False
     x, y = position
     return y >= 0 and y < len(grid) and x >= 0 and x < len(grid[y])

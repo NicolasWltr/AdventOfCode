@@ -14,22 +14,16 @@ def solve_first(data, with_disabling=False):
     disabled_next = disabled
     mul_tasks = mul_tasks[1:]
 
-    print("Start with", disabled, disabled_next)
-
     for task in mul_tasks:
         if "do()" in task:
-            # print("Next is enabled")
             disabled_next = False
         if "don't()" in task:
-            # print("Next is disabled")
             disabled_next = True
 
         if "do()" in task and "don't()" in task:
-            print("Testing")
             index_do = task.find("do()")
             index_dont = task.find("don't()")
             disabled_next = index_dont > index_do
-            print("Next is", disabled_next)
 
         if not ')' in task:
             disabled = disabled_next
@@ -52,7 +46,6 @@ def solve_first(data, with_disabling=False):
             continue
         
         if not disabled or not with_disabling:
-            # print("Adding", (a*b))
             result += a*b
         
         disabled = disabled_next
