@@ -18,6 +18,9 @@ def get_input_for_year_day(year: int, day: int, timeout=10) -> str:
 
     os.makedirs(f"Inputs/{year}", exist_ok=True)
 
+    if 'Please don\'t repeatedly request' in requestToFile.text:
+        raise Exception(requestToFile.text.strip())
+
     with open(file_path, "w") as file:
         file.write(requestToFile.text)
 

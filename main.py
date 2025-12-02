@@ -37,8 +37,16 @@ def solve(data, first, second):
 if __name__ == "__main__":
     year, day, autosubmit = read_parameter()
     create_solve_file(year, day)
-    path = get_input_for_year_day(year, day, timeout=100)
-
+    try:
+        path = get_input_for_year_day(year, day, timeout=100)
+    except Exception as e:
+        console.print(
+            Panel.fit(
+                Text(str(e), style="bold red"),
+                border_style="red",
+            )
+        )
+        exit()
     with open(path, "r") as file:
         data = file.read()
 
