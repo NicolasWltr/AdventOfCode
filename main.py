@@ -53,6 +53,7 @@ if __name__ == "__main__":
     solve_first, solve_second = get_solve_for(year, day)
 
     result_first, result_second = solve(data, solve_first, solve_second)
+    wait_for_five = False
     if result_first is not None:
         content = Text()
         content.append(f"Result for day {day} in year {year} (Part 1): ", style="bold green")
@@ -66,6 +67,7 @@ if __name__ == "__main__":
         )
         if autosubmit or Prompt.ask(Text("Submit solution for Part 1? (y/n)", style="bold yellow")).lower() == "y":
             article, success = submit_answer(year, day, 1, str(result_first))
+            wait_for_five = success == 1
             console.print(
                 Panel.fit(
                     Text(article, style=("bold green" if success == 1 else ("bold red" if success == 0 else "bold dark_orange"))),
@@ -84,6 +86,15 @@ if __name__ == "__main__":
             )
         )
         if autosubmit or Prompt.ask(Text("Submit solution for Part 2? (y/n)", style="bold yellow")).lower() == "y":
+            if wait_for_five:
+                console.print(
+                    Panel.fit(
+                        Text("Waiting 5 seconds to avoid AoC rate-limiting...", style="bold yellow"),
+                        border_style="yellow",
+                    )
+                )
+                import time
+                time.sleep(5)
             article, success = submit_answer(year, day, 2, str(result_second))
             console.print(
                 Panel.fit(
