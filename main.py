@@ -1,4 +1,3 @@
-
 from Utils.aocUtils import get_input_for_year_day, submit_answer
 from Utils.readParameter import read_parameter
 from Utils.solve import get_solve_for
